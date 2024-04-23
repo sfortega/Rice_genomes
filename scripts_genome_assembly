@@ -1,5 +1,5 @@
 ################
-#1. GENOME ASSEMBLY
+##1. GENOME ASSEMBLY
 ################
 mkdir raw_data
 cat /mnt/longship/users/sfo503/Harper_Vault/rice_genomes/X204SC22122095-Z01-F001_01/01.RawData/SRA2_1_C/SRA2_1_C_EKDN230020254-1A_HFCCGDSX7_L3_1.fq.gz X204SC22122095-Z01-F001_01/01.RawData/SRA2_1_C/SRA2_1_C_EKDN230020254-1A_HFCCGDSX7_L4_1.fq.gz >raw_data/SRA2_1_C_1.fq.gz
@@ -136,7 +136,7 @@ done < "file"
 
 
 ################
-2. ANNOTATION DE NOVO USING PROTEINS FROM VIRIDIPLANTAE + PROT NIPPONBARE
+##2. ANNOTATION DE NOVO USING PROTEINS FROM VIRIDIPLANTAE + PROT NIPPONBARE
 #DOWNLOAD WITH NIPPONBARE
 ################
 wget -P ./ https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_genome.fasta.gz
@@ -189,7 +189,7 @@ BRAKER/scripts/braker.pl --genome PDP211_B_masked/PDP211_B_scaffolds.fasta.maske
 
 
 ###########################
-3.ANNOTATION FILTERING AND FUNCTIONAL CHARACTERIZATION after BRAKER, use EGGNOGG and gFACs
+##3.ANNOTATION FILTERING AND FUNCTIONAL CHARACTERIZATION after BRAKER, use EGGNOGG and gFACs
 ############################
 ###first eggnog and then filtering with gFACs 
 module load BioPerl/1.7.2-GCCcore-8.2.0-Perl-5.28.1 
@@ -233,7 +233,7 @@ emapper.py --override --cpu 100 -i ./gFACs/SRA2_1_C_unique_genes.fasta --output 
 
 
 ##################
-#5.EDTA to annotate transposable elements
+##4.EDTA to annotate transposable elements
 #################
 
 
@@ -249,7 +249,7 @@ EDTA/EDTA.pl --genome ./ragout/SRA2_1_C_scaffolds.fasta --species Rice --step al
 
 
 ####################
-#6.MASH DISTANCE to find how different the 4 genomes are between them. MASH gives dissimilarity 
+##5.MASH DISTANCE to find how different the 4 genomes are between them. MASH gives dissimilarity 
 ####################
 module load  Mash/2.2-foss-2019b
 mash sketch rice_genomes/ragout/GL37_A_scaffolds.fasta
@@ -265,7 +265,7 @@ mash triangle -l mash_rice -E > mash_results2
 
 
 ####################
-#7. PHYLOGENY USING THE GENE PHYTOCHROME C (Os03g0752100-01) AND DOWNLOADING SEQUENCES FROM https://agrigenome.dna.affrc.go.jp/tasuke/ricegenomes/
+##6. PHYLOGENY USING THE GENE PHYTOCHROME C (Os03g0752100-01) AND DOWNLOADING SEQUENCES FROM https://agrigenome.dna.affrc.go.jp/tasuke/ricegenomes/
 ####################
 #####get the sequence corresponding with the PhyC using as input 
 file=rice_names ###file with the 4 genomes names GL37_A, J23_A, PDP211_B, SRA2_1_C
